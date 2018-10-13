@@ -24,7 +24,7 @@ def upload():
 
 @app.route('/download/<filename>')
 def download(filename):
-    return send_from_directory('/static',filename,as_attachment=True)
+    return send_from_directory('static',filename,as_attachment=True)
 
 
 if __name__ == '__main__':
