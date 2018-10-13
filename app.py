@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, request, render_template, flash, redirect
+from flask import Flask, request, render_template, flash, redirect,send_from_directory
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
@@ -22,6 +22,10 @@ def upload():
     else:
         return render_template('uploadtest.html')
 
+@app.route('/download/<filename>')
+def download(filename):
+    return send_from_directory('/static',filename,as_attachment=True)
+
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0')
