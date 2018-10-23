@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8" lang="zh-CN">
+    <title>login</title>
+</head>
+<body>
+<div style="width: 50vh;height: 50vh;margin: 0 auto;" align="center">
+    <h3>登录</h3>
+<form action="/login" method="post">
+    <label>{{ msg }}</label><br>
+    <label>邮箱:</label><input type="email" name="email" id="email" required><br>
+    <label>密码:</label><input type="password" id="password" name="password" required><br>
+    <input type="hidden" id="nexturl" name="nexturl" value="{{ nexturl }}">
+    <input type="submit" value="登录">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/register"><input type="button" value="注册"></a>
+</form>
+</div>
+</body>
+</html>

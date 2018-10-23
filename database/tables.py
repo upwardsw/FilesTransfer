@@ -10,11 +10,11 @@ Base = declarative_base()
 
 class user(UserMixin, Base, Model):
     __tablename__ = 'user'
-    userid = Column(INTEGER, primary_key=true, autoincrement=True, )
+    userid = Column(INTEGER, primary_key=True, autoincrement=True, )
     username = Column(String(45))
     level = Column(SmallInteger)  # 0 is admin
     email = Column(String(100))
-    password = Column(93)
+    password = Column(String(93))
 
     def get_id(self):
         return self.userid
@@ -29,11 +29,11 @@ class user(UserMixin, Base, Model):
 
 class userrelationship(Base):
     __tablename__ = 'relationship'
-    user = Column(Integer, ForeignKey('user.userid'))
-    friend = Column(Integer, ForeignKey('user.userid'))
+    user = Column(Integer, ForeignKey('user.userid'),primary_key=True)
+    friend = Column(Integer, ForeignKey('user.userid'),primary_key=True)
     flag = Column(SmallInteger)
 
-    user = relationship('user', backref('userrelationship', order_by=user))
+    # user = relationship('user', backref('userrelationship', order_by=user))
 
     def __repr__(self):
         return "<relationship(user={0},friend={1},flag={2})>".format(self.user, self.friend,
@@ -48,7 +48,7 @@ class files(Base):
     user_userid = Column(Integer, ForeignKey('user.userid'))
     filedestime = Column(TIMESTAMP)
 
-    user = relationship('user', backref=backref('files', order_by=user_userid))
+    # user = relationship('user', backref=backref('files', order_by=user_userid))
 
     def get_id(self):
         return self.fileid
@@ -61,12 +61,12 @@ class files(Base):
 
 class filerecord(Base):
     __tablename__ = 'filerecord'
-    user_userid = Column(Integer, ForeignKey('user.userid'))
-    files_fileid = Column(Integer, ForeignKey('files.fileid'))
+    user_userid = Column(Integer, ForeignKey('user.userid'),primary_key=True)
+    files_fileid = Column(Integer, ForeignKey('files.fileid'),primary_key=True)
     deltime = Column(TIMESTAMP)
 
-    user = relationship('user', backref=backref('files', order_by=user_userid))
-    files = relationship('files', backref=backref('files', order_by=files_fileid))
+    # user = relationship('user', backref=backref('files', order_by=user_userid))
+    # files = relationship('files', backref=backref('files', order_by=files_fileid))
 
     def __repr__(self):
         return "<filerecord(user_userid={0},files_fileid={1},deltime={2})>".format(self.user_userid,self.files_fileid,self.deltime)
@@ -74,14 +74,14 @@ class filerecord(Base):
 
 class sendrecord(Base):
     __tablename__ = 'sendrecord'
-    user_userid = Column(Integer, ForeignKey('user.userid'))
-    user_userid1 = Column(Integer, ForeignKey('user.userid'))
-    files_fileid = Column(Integer, ForeignKey('files.fileid'))
+    user_userid = Column(Integer, ForeignKey('user.userid'),primary_key=True)
+    user_userid1 = Column(Integer, ForeignKey('user.userid'),primary_key=True)
+    files_fileid = Column(Integer, ForeignKey('files.fileid'),primary_key=True)
     sendtime = Column(TIMESTAMP)
     note = Column(TEXT)
 
-    user = relationship('user', backref=backref('files', order_by=user_userid))
-    files = relationship('files', backref=backref('files', order_by=files_fileid))
+    # user = relationship('user', backref=backref('files', order_by=user_userid))
+    # files = relationship('files', backref=backref('files', order_by=files_fileid))
 
     def __repr__(self):
         return "<sendrecord(user_userid={0},user_userid={1},files_fileid={2},sendtime={3},note={4})>".format(self.user_userid,self.user_userid1,self.files_fileid,self.sendtime,self.note)

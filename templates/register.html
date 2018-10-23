@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8" lang="zh-CN">
+    <title>register</title>
+</head>
+<body>
+<div style="width: 50vh;height: 50vh;margin: 0 auto;" align="center">
+    <h3>注册</h3>
+    <p>{{ msg }}</p>
+    <form action="/register" method="post">
+        <table>
+            <tr>
+                <td>昵称:</td><td><input type="text" id="username" name="username" required></td>
+            </tr>
+            <tr>
+                <td>邮箱:</td><td><input type="email" id="useremail" name="useremail" required></td>
+            </tr>
+            <tr>
+                <td>密码:</td><td><input type="password" id="userpassword" name="userpassword" required></td>
+            </tr>
+            <tr>
+                <td></td><td><input type="submit" value="注册">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/login"><input type="button" value="登录"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>
