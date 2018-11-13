@@ -75,6 +75,7 @@ def userregister():
             # message=Message('Account authorize',sender='13517078184@163.com',recipients=['{}'.format(username),'{}'.format(email)])
             message = Message('Account authorize', sender='13517078184@163.com',recipients=['13517078184@139.com'])
             message.body="Hello,{0}<br>This email is from admin!<br>Your account has not been activated yet!<br><a href='{1}'>click here to activate your account!</a><br>if you mistaken the email,please ignore it!".format(username,url)
+            mail.send(message)
             session.close()
 
             return redirect(url_for('users.userlogin'))

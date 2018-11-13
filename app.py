@@ -82,4 +82,4 @@ def main():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',multi_processes=True)
+    app.run(host='0.0.0.0')
